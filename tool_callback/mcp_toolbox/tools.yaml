@@ -1,0 +1,59 @@
+sources:
+  bq_employee_data:
+    kind: "bigquery"
+    project: "tt-labs-001"
+    # location: "US" # Optional: Specifies the location for query jobs.
+    # writeMode: "allowed" # One of: allowed, blocked, protected. Defaults to "allowed".
+    # allowedDatasets: # Optional: Restricts tool access to a specific list of datasets.
+    #   - "my_dataset_1"
+    #   - "other_project.my_dataset_2"
+tools:
+  search_employees_by_id:
+    kind: bigquery-sql
+    source: bq_employee_data
+    statement: |
+      SELECT
+        *
+      FROM
+        `tt-labs-001.adk_mcp.employee`
+      WHERE
+        EmployeeID = @EmployeeID;
+    description: |
+      Use this tool to get information for a specific Employee.
+
+      Example:
+      {{
+          "EmployeeID": 123,
+      }}
+    parameters:
+      - name: EmployeeID
+        type: integer
+        description: EmployeeID
+
+  search_employees_by_country:
+    kind: bigquery-sql
+    source: bq_employee_data
+    statement: |
+      SELECT
+        *
+      FROM
+        `tt-labs-001.adk_mcp.employee`
+      WHERE
+        Country = @Country;
+    description: |
+      Use this tool to get information for a specific Country employees.
+      Takes country and returns info on the user.
+
+      Example:
+      {{
+          "Country": "India",
+      }}
+    parameters:
+      - name: Country
+        type: string
+        description: Country name
+
+toolsets:
+  gcp_bq_employees:
+    - search_employees_by_id
+    - search_employees_by_country
