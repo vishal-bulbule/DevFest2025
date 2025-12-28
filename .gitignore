@@ -52,7 +52,7 @@ agent_sessions.db
 sessions.db
 
 # Environment variables
-.env
+#.env
 .env.local
 .env.*.local
 
