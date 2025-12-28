@@ -55,11 +55,11 @@ Output as a bulleted list.
 )
 
 # --- Combine into Sequential LLM Pipeline ---
-interview_prep_pipeline = SequentialAgent(
-    name="InterviewPrepPipeline",
+job_assist_agent = SequentialAgent(
+    name="JobAssistAgent",
     sub_agents=[open_positions_agent, interview_qa_agent, interview_tips_agent],
     description="Suggests open jobs, interview Q&A, and preparation tips"
 )
 
 # Root agent
-root_agent = interview_prep_pipeline
+root_agent = job_assist_agent

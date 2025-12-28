@@ -29,7 +29,7 @@ def before_model(callback_context: CallbackContext, llm_request: LlmRequest) -> 
         # Append instructions to the last user message
         content_part = content.parts[0]
         #content_part.text += "\nPlease respond politely and keep the answer under 50 words."
-        content_part.text += "\nPlease respond politely and also only give answer in german language."
+        content_part.text += "\nPlease respond politely and also only give answer in Marathi language."
 
 
         # Log the modified text
